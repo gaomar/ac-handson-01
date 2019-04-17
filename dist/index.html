@@ -1,0 +1,299 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Amazon Connectハンズオン 2019-05-21</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="dist"
+                  title="Amazon Connectハンズオン 2019-05-21"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="リソースを作成する" duration="0">
+        <h2 is-upgraded>1-1. リソースを作成する</h2>
+<p>AWSにアクセスし、お持ちのAWSアカウントでログインします。<br><a href="https://aws.amazon.com/jp/" target="_blank">https://aws.amazon.com/jp/</a></p>
+<p>コンソール画面が開いたら、サービス検索から【Amazon Connect】と入力して検索します。<br>出てきた［Amazon Connect］をクリックします。</p>
+<p class="image-container"><img alt="s100" src="img/623437cb60a66c9.png"></p>
+<p>［今すぐ始める］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s101" src="img/e0a617ae3e06ccea.png"></p>
+<p>東京リージョンになっているか確認してください。<br>なっていない方は右上から「<strong>アジアパシフィック（東京）</strong>」を選択します。</p>
+<p class="image-container"><img alt="s102" src="img/c3340a3409094ce4.png"></p>
+<p>※既にリソースをお持ちの方は［インスタンスを追加する］ボタンを押して今回作成する専用のインスタンスを作成してください。</p>
+<p class="image-container"><img alt="s103" src="img/8222fb828ec58a.png"></p>
+<p>アクセスURLに今回使用するための名前を決めます。</p>
+<p>［handson-ac-{今日の日付}-{連番}］という感じで他の人と被らないような名前にします。</p>
+<p class="image-container"><img alt="s104" src="img/ea706f8bc6841de5.png"></p>
+<p>ステップ２の管理者の作成は後でできるので、「これをスキップ」を選択してから、［次のステップ］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s105" src="img/82853d40b9750f70.png"></p>
+<p>ステップ３のテレフォニーオプションもそのまま何もせず［次のステップ］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s106" src="img/e10e25d145e0920b.png"></p>
+<p>ステップ４のデータストレージもそのまま［次のステップ］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s107" src="img/f44898e671832a26.png"></p>
+<p>ステップ５で最終確認をして問題なければ［インスタンスの作成］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s108" src="img/c49bb63b3a72a847.png"></p>
+<p>1〜2分ほど作成に時間がかかります。</p>
+<p class="image-container"><img alt="s109" src="img/d78f3c684318cb9.png"></p>
+<p>成功すれば、［今すぐ始める］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s110" src="img/dfd5b9f0f7df90fb.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="電話番号を取得しよう！" duration="0">
+        <h2 is-upgraded>2-1.電話番号を取得する</h2>
+<p>Amazon Connect専用の電話番号を手に入れます。<br>別のタブでAmazon Connect用の画面が表示されるので、そこに表示されている［今すぐ始める］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s111" src="img/c754d8ea4d7c8f12.png"></p>
+<p>電話番号の取得で、国は<code>Japan +81</code>を選択します。</p>
+<p class="image-container"><img alt="s112" src="img/6feb8f7705092c68.png"></p>
+<p>次のタイプは2種類あります。お好きな方を選んでください。</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>Direct Dial</p>
+</td><td colspan="1" rowspan="1"><p>050番号が取得できる。発信者が通話料負担する。</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Toll Free</p>
+</td><td colspan="1" rowspan="1"><p>0800番号が取得できる。発信者の通話料無料（フリーダイヤル）開発者が負担する。</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="s113" src="img/e7c35a29023b04d6.png"></p>
+<p>最後にお好きな番号を選択して、［次へ］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s114" src="img/619f6fc26afe1d59.png"></p>
+<p>［Continue］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s115" src="img/44dccce5be242492.png"></p>
+<h2 is-upgraded>2-2.取得した電話番号を確認する</h2>
+<p>取得した電話番号を確認します。<br>左メニューからルーティングの電話番号をクリックします。</p>
+<p class="image-container"><img alt="s116" src="img/9cdd9f08ad14ad6c.png"></p>
+<p>取得した電話番号が表示されています。別の番号を増やしたい場合は右側にある［電話番号の追加］ボタン押して追加することもできます。</p>
+<p class="image-container"><img alt="s117" src="img/9b95951120c13b06.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="オペレーターを設定しよう！" duration="0">
+        <h2 is-upgraded>3-1.キューを設定する</h2>
+<p>キューは同時に同じ番号にかかってきた際にオペレーターが空いたら繋がるようにする待機スペースのようなものです。</p>
+<p>左メニューのルーティングからキューをクリックします。</p>
+<p class="image-container"><img alt="s118" src="img/d5197ef604b9e56b.png"></p>
+<p>［新しいキューの追加］をクリックします。</p>
+<p class="image-container"><img alt="s119" src="img/a55232611bd3d598.png"></p>
+<p>それぞれ項目を埋めていき、［新しいキューの追加］ボタンをクリックします。</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>名前</p>
+</td><td colspan="1" rowspan="1"><p>営業部キュー</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>説明</p>
+</td><td colspan="1" rowspan="1"><p>営業部のキュー</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>オペレーション時間</p>
+</td><td colspan="1" rowspan="1"><p>Basic Hours</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>アウトバウンド発信者ID番号</p>
+</td><td colspan="1" rowspan="1"><p>取得した番号を指定</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="s120" src="img/590133c02d761e10.png"></p>
+<h2 is-upgraded>3-2.ルーティングプロファイルを設定する</h2>
+<p>キューで対応するべき部屋ができたので、次はルーティングプロファイルを作成します。<br>ルーティングプロファイルはどのキューに来たら、どのオペレーターに繋げるのかを橋渡しする役目があります。</p>
+<p>左メニューのユーザーからルーティングプロファイルをクリックします。</p>
+<p class="image-container"><img alt="s121" src="img/356d3e1c94c065d7.png"></p>
+<p>［新しいプロファイルを追加］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s122" src="img/1d22bf89069a62e1.png"></p>
+<p>それぞれ項目を埋めていき、［新しいプロファイルの追加］ボタンをクリックします。</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>名前</p>
+</td><td colspan="1" rowspan="1"><p>営業部プロファイル</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>説明</p>
+</td><td colspan="1" rowspan="1"><p>営業部のプロファイル</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>ルーティングプロファイルのキュー</p>
+</td><td colspan="1" rowspan="1"><p>営業部キュー</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>デフォルトのアウトバウンドキュー</p>
+</td><td colspan="1" rowspan="1"><p>営業部キュー</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="s123" src="img/567a45209f2bd5b.png"></p>
+<p>これで新しいプロファイルが作成されました。</p>
+<p class="image-container"><img alt="s124" src="img/6c5b5d0c9328c932.png"></p>
+<h2 is-upgraded>3-3.オペレーターを作成する</h2>
+<p>次に電話対応するオペレーターを作成していきます。<br>左メニューのユーザーからユーザー管理をクリックします。</p>
+<p class="image-container"><img alt="s125" src="img/2788277aeef93466.png"></p>
+<p>［新しいユーザーの追加］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s126" src="img/fbe37f1ce458b69c.png"></p>
+<p>作成を選択状態にして［次へ］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s127" src="img/41e29c66e78af269.png"></p>
+<p>ユーザーの詳細情報を埋めていきます。埋めたら［保存］ボタンをクリックします。</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>名</p>
+</td><td colspan="1" rowspan="1"><p>太郎</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>性</p>
+</td><td colspan="1" rowspan="1"><p>営業</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>ログイン名</p>
+</td><td colspan="1" rowspan="1"><p>eigyo</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>パスワード</p>
+</td><td colspan="1" rowspan="1"><p>お好きなパスワード</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>ルーティングプロファイル</p>
+</td><td colspan="1" rowspan="1"><p>営業部プロファイル</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>セキュリティプロファイル</p>
+</td><td colspan="1" rowspan="1"><p>Agent</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="s128" src="img/813b90794f21a7a2.png"></p>
+<p>［ユーザーの作成］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s129" src="img/af0a6bc4a366fc79.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="問い合わせフローを作成しよう！" duration="0">
+        <h2 is-upgraded>4-1.問い合わせフローを作成する</h2>
+<p>左メニューのルーティングから問い合わせフローをクリックします。</p>
+<p class="image-container"><img alt="s130" src="img/d5c923b8e0b6b31.png"></p>
+<p>［問い合わせフローの作成］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s131" src="img/2cd736cbdf523c2b.png"></p>
+<p>問い合わせフローの名前を最初に設定しておきます。今回は <strong>デモフロー</strong> としました。</p>
+<p class="image-container"><img alt="s132" src="img/67c430fffbdd863c.png"></p>
+<h2 is-upgraded>4-2.フローエディタに触れる</h2>
+<p>フローエディタを触っていきます。</p>
+<p>左メニューの設定カテゴリを展開して、その中にある「音声の設定」をフローエディタにドラッグアンドドロップします。ドロップしたメニューをクリックします。</p>
+<p class="image-container"><img alt="s133" src="img/7852210b67019fb5.png"></p>
+<p>音声の設定で、言語は<strong>日本語</strong>を選択します。</p>
+<p class="image-container"><img alt="s134" src="img/24fccb2db360a451.png"></p>
+<p>音声は男性の声なら<code>Takumi</code>で女性の声なら<code>Mizuki</code>を選択します。お好きな方を選択してください。右下の［Save］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s135" src="img/fda82c26f276e088.png"></p>
+<p>ブロックを繋いでいきます。エントリポイントの右にある○をクリックして引っ張ります。<br>そのまま出っ張っている部分に繋ぎます。<br>直感的に繋いていけるので初心者でも簡単に作ることができます。</p>
+<p class="image-container"><img alt="s136" src="img/d099fae8e717951.png"></p>
+<p>操作カテゴリにあるプロンプトの再生ブロックをフローエディタにドラッグアンドドロップします。ドロップしたら、そのブロックをクリックします。</p>
+<p class="image-container"><img alt="s137" src="img/2852915671ec4209.png"></p>
+<p>テキスト読み上げ機能（アドホック）を選択し、テキストを入力します。</p>
+<pre><code>&lt;speak&gt;
+  &lt;break time=&#39;2s&#39; /&gt;
+  お電話ありがとうございます。アイエンターでございます。
+&lt;/speak&gt;
+</code></pre>
+<p>解釈する部分はプルダウンメニューから<code>SSML</code>を選択します。最後に［Save］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s138" src="img/a338132062efaf1f.png"></p>
+<p>ブロックを繋いでいきます。</p>
+<p class="image-container"><img alt="s139" src="img/37b07f2c264d32b5.png"></p>
+<h2 is-upgraded>4-3.IVRを設定する</h2>
+<p>コールセンターにもあるIVRという機能を実装します。これはユーザーからの番号を受け付けるものです。番号を押してもらい目的のメニューに誘導するための機能です。</p>
+<p>操作カテゴリの顧客の入力を取得するブロックをフローエディタにドラッグアンドドロップします。ドロップしたら、そのブロックをクリックします。</p>
+<p class="image-container"><img alt="s140" src="img/bfdcb330dc66fac9.png"></p>
+<p>テキスト読み上げ機能（アドホック）を選択して、テキストを入力します。</p>
+<pre><code>営業部に関するお問い合わせは１を、それ以外の方は２を押してください
+</code></pre>
+<p class="image-container"><img alt="s141" src="img/7d78cbceabc6f3e8.png"></p>
+<p>下にスクロールして、［別の条件の追加］をクリックします。</p>
+<p class="image-container"><img alt="s142" src="img/2bc15eaa05e42b90.png"></p>
+<p>オプションに数字の「1」を入力します。更に［別の条件の追加］をクリックします。</p>
+<p class="image-container"><img alt="s143" src="img/b319bb365f8b7c5e.png"></p>
+<p>数字の「2」を入力して、右下の［Save］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s144" src="img/ffe27a41d7b84451.png"></p>
+<p>ブロックを線で繋いでいきます。</p>
+<p class="image-container"><img alt="s145" src="img/78789aea9497a968.png"></p>
+<h2 is-upgraded>4-4.オペレーターに繋げる</h2>
+<p>設定にあるキューの設定ブロックをフローエディタにドラッグアンドドロップします。営業部とそれ以外用のキューの2箇所ドラッグアンドドロップします。上の方のブロックをクリックします。</p>
+<p class="image-container"><img alt="s146" src="img/47b3a0c26dc0bf9c.png"></p>
+<p>キューの選択から「営業部キュー」を選択し、右下の［Save］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s147" src="img/da0898b4e5091865.png"></p>
+<p>次に下側のキューを設定します。ブロックをクリックします。</p>
+<p class="image-container"><img alt="s148" src="img/e7b2896e06668035.png"></p>
+<p>キューの選択から「BasicQueue」を選択して、［Save］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s149" src="img/7b81f48fbc5a50ed.png"></p>
+<p>それぞれ2つのブロックを繋いでいきます。IVRで選択した番号に対応したところに紐づけていきます。</p>
+<p class="image-container"><img alt="s150" src="img/c09dbbcbe969f939.png"></p>
+<p>終了/転送カテゴリにあるキューへの転送ブロックをドラッグアンドドロップします。</p>
+<p class="image-container"><img alt="s151" src="img/bf6bacb16ed14aa.png"></p>
+<p>成功側の線を繋ぎます。</p>
+<p class="image-container"><img alt="s152" src="img/a3675be8bc830a9d.png"></p>
+<p>キューへ転送したら、電話を終話したいので、<br>終了/転送カテゴリの切断ブロックをドラッグアンドドロップします。</p>
+<p class="image-container"><img alt="s153" src="img/bf96879a7a68e0d.png"></p>
+<p>それ以外の空いている項目は全て切断ブロックに繋げます。</p>
+<p class="image-container"><img alt="s154" src="img/7a419c4353a2a6a9.png"></p>
+<p>全て繋ぎ終われば、右上の保存ボタンの横にある▼マークをクリックして、メニューを展開します。そのメニューの中に［保存して発行］をクリックします。</p>
+<p>保存するだけでは、Amazon Connect側には反映されないので、必ず［保存して発行］をクリックします。</p>
+<p class="image-container"><img alt="s155" src="img/4b4aed63a307c487.png"></p>
+<p>ポップアップが表示されるので、［保存して発行］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s156" src="img/772e7c4cc7bd54d1.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="キューの待ち音楽を設定しよう" duration="0">
+        <h2 is-upgraded>5-1.キューの待ち音楽を設定する</h2>
+<p>左メニューのルーティングから問い合わせフローをクリックします。</p>
+<p class="image-container"><img alt="s157" src="img/13ac98a20d9910ec.png"></p>
+<p>［Default customer queue］をクリックします。</p>
+<p class="image-container"><img alt="s158" src="img/b959978cb62bb0ec.png"></p>
+<p>既にあるプロンプトのループブロックをクリックします。</p>
+<p class="image-container"><img alt="s159" src="img/1fae84bec53656e1.png"></p>
+<p>Text to Speechの左にある「x」を押して削除し、右下の［Save］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s160" src="img/5a9055db3b83f950.png"></p>
+<p>［保存して発行］をクリックします。</p>
+<p class="image-container"><img alt="s161" src="img/9b057da13c719e5d.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="問い合わせフローを適用しよう！" duration="0">
+        <h2 is-upgraded>6-1.問い合わせフローを適用する</h2>
+<p>これまでに作成した問い合わせフローを電話番号に適用します。<br>左メニューのルーティングから電話番号をクリックします。</p>
+<p class="image-container"><img alt="s162" src="img/f80d01985d607c99.png"></p>
+<p>対象の電話番号をクリックします。</p>
+<p class="image-container"><img alt="s163" src="img/b9f5b529a228eaa5.png"></p>
+<p>問い合わせフロー/IVRに今回作成した「デモフロー」を指定します。</p>
+<p class="image-container"><img alt="s164" src="img/bbfb3ada3c24f5ce.png"></p>
+<p>右上のドアアイコンをクリックして、ログアウトします。</p>
+<p class="image-container"><img alt="s165" src="img/ddffbbd50c2bffd9.png"></p>
+<p>3-3で作成したオペレーターのユーザー名とパスワードでログインします。</p>
+<p class="image-container"><img alt="s166" src="img/b26f0d201f918bb3.png"></p>
+<p>ログインしたら電話アイコンをクリックします。</p>
+<p class="image-container"><img alt="s167" src="img/7d4c1a7f89bec2fa.png"></p>
+<p>［次に設定：Available］を設定します。</p>
+<p class="image-container"><img alt="s168" src="img/17619ae55378c104.png"></p>
+<p>利用可能状態にステータスを変更しておきます。</p>
+<p class="image-container"><img alt="s169" src="img/97a4d63da0d05143.png"></p>
+<p>この状態で取得した電話番号にお手持ちの携帯電話から電話をかけると繋がります。<br>電話番号の入力を間違えないように気をつけてください。</p>
+<p>うまくいけば、「お電話ありがとうございます。アイエンターでございます。」という音声が再生され、営業部なら1をそれ以外なら2をというように再生されます。</p>
+<p>携帯電話のキーパッドを開いて、数字の［１］を押してください。<br>するとソフトフォンでPCに電話がかかってきます。</p>
+<p class="image-container"><img alt="s170" src="img/838a3523e9471473.png"></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>
