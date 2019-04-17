@@ -10,7 +10,7 @@ id: dist
 
 ---
 
-# Amazon Connectハンズオン 2019-05-21
+# Amazon Connectハンズオン
 
 ## リソースを作成する
 ### 1-1. リソースを作成する
